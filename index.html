@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macy Freeman — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a17;
+    --paper:#f5f3ee;
+    --paper-warm:#efece4;
+    --white:#ffffff;
+    --gray:#79766e;
+    --gray-light:#c9c5bb;
+    --gold:#b1904f;
+    --gold-soft:#d9c298;
+    --blue:#d2e4e1;
+    --blue-deep:#a9c3bf;
+    --dark:#2c2b27;
+    --dark-2:#37362f;
+
+    --display: 'Fraunces', serif;
+    --display-bold: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --hand: 'Kalam', cursive;
+
+    --board-frame: #d8dadb;
+    --board-frame-dark: #b7bABC;
+    --board: #fafaf8;
+    --marker-black: #2b2b2b;
+    --marker-blue: #3457a6;
+    --marker-red: #b8453f;
+    --postit-yellow: var(--gold-soft);
+    --postit-blue: var(--blue);
+
+    --max-w: 1180px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .wrap{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:0 48px;
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  /* ---------- LANDING: WHITEBOARD ---------- */
+  .landing{
+    min-height:100svh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+    background:var(--paper-warm);
+  }
+
+  .board-frame{
+    width:100%;
+    max-width:1320px;
+    background:linear-gradient(180deg, #e4e5e6, var(--board-frame) 6%, var(--board-frame) 94%, #c7c9ca);
+    border-radius:14px;
+    padding:20px 20px 0;
+    box-shadow:
+      0 30px 60px -20px rgba(20,19,17,0.35),
+      inset 0 0 0 1px rgba(255,255,255,0.4);
+  }
+
+  .board-surface{
+    position:relative;
+    background:
+      linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0) 18%),
+      repeating-linear-gradient(0deg, rgba(60,60,55,0.035) 0 1px, transparent 1px 42px),
+      repeating-linear-gradient(90deg, rgba(60,60,55,0.035) 0 1px, transparent 1px 42px),
+      var(--board);
+    border-radius:6px;
+    min-height:min(88svh, 780px);
+    overflow:hidden;
+    box-shadow:inset 0 0 40px rgba(0,0,0,0.06);
+  }
+
+  .board-tray{
+    height:20px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap:26px;
+    padding-bottom:6px;
+  }
+  .board-tray .marker-cap{
+    width:38px;height:10px;
+    border-radius:3px 3px 2px 2px;
+    background:var(--marker-blue);
+    box-shadow:0 1px 2px rgba(0,0,0,0.3);
+  }
+  .board-tray .eraser{
+    width:44px;height:9px;
+    border-radius:2px;
+    background:linear-gradient(180deg,#4a4a48,#2c2c2b);
+    box-shadow:0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  .board-center{
+    position:relative;
+    z-index:4;
+    min-height:min(88svh, 780px);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px 24px;
+  }
+
+  .board-eyebrow{
+    font-family:var(--hand);
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:0.04em;
+    color:var(--marker-blue);
+    margin-bottom:10px;
+    transform:rotate(-1.5deg);
+  }
+
+  .landing h1{
+    font-family:var(--display-bold);
+    font-weight:700;
+    font-size:clamp(44px, 7.4vw, 88px);
+    line-height:1;
+    letter-spacing:-0.01em;
+    color:var(--marker-black);
+  }
+
+  .landing .objective{
+    margin-top:26px;
+    max-width:720px;
+    font-size:clamp(17px, 2vw, 21px);
+    font-weight:400;
+    color:#33403e;
+    font-family:var(--hand);
+    line-height:1.6;
+    transform:rotate(0.4deg);
+  }
+
+  .scroll-cue{
+    margin-top:56px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2px;
+    font-family:var(--hand);
+    font-weight:700;
+    font-size:15px;
+    color:var(--marker-red);
+    text-decoration:none;
+    width:fit-content;
+    transition:opacity 0.2s ease;
+    animation:bob 2.4s ease-in-out infinite;
+  }
+  .scroll-cue:hover{opacity:0.7;}
+  .scroll-cue svg{width:30px;height:34px;}
+
+  @keyframes bob{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(6px);}
+  }
+
+  /* --- headshot pinned with magnets --- */
+  .headshot-pin{
+    position:absolute;
+    top:8%;
+    left:8%;
+    width:min(140px, 17vw);
+    z-index:3;
+    transform:rotate(-5deg);
+    filter:drop-shadow(0 14px 18px rgba(0,0,0,0.22));
+  }
+  .headshot-pin img{
+    width:100%;
+    border-radius:2px;
+    display:block;
+    filter:contrast(1.04) brightness(1.02);
+    border:3px solid #fff;
+  }
+  .magnet{
+    position:absolute;
+    width:18px;height:18px;
+    border-radius:50%;
+    top:-9px;
+    box-shadow:0 2px 3px rgba(0,0,0,0.35), inset 0 -2px 3px rgba(0,0,0,0.25), inset 0 1px 2px rgba(255,255,255,0.5);
+  }
+  .magnet-left{left:14px; background:radial-gradient(circle at 35% 30%, #e57373, #b8453f);}
+  .magnet-right{right:14px; background:radial-gradient(circle at 35% 30%, #6a93d8, var(--marker-blue));}
+
+  /* --- post-it notes --- */
+  .postit{
+    position:absolute;
+    width:150px;
+    height:110px;
+    padding:20px 14px 16px;
+    font-family:var(--hand);
+    font-weight:700;
+    font-size:16px;
+    line-height:1.3;
+    color:#3a3630;
+    text-align:center;
+    box-shadow:0 10px 16px -6px rgba(0,0,0,0.25);
+    z-index:3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+  }
+  .postit .tape{
+    position:absolute;
+    top:-10px;
+    left:50%;
+    transform:translateX(-50%) rotate(-3deg);
+    width:56px;
+    height:20px;
+    background:rgba(255,255,255,0.55);
+    border:1px solid rgba(255,255,255,0.7);
+  }
+  .postit-1{background:var(--postit-blue); top:10%; right:9%; transform:rotate(4deg); color:#1c3634;}
+  .postit-2{background:var(--postit-blue); bottom:14%; left:7%; transform:rotate(-3deg); color:#1c3634;}
+  .postit-3{background:var(--postit-yellow); bottom:9%; right:13%; transform:rotate(3deg); color:#3a2f14;}
+
+  /* --- play diagrams (X's and O's) --- */
+  .play-diagram{
+    position:absolute;
+    opacity:0.55;
+    z-index:1;
+    pointer-events:none;
+  }
+  .play-1{top:6%; left:32%; width:150px; transform:rotate(-4deg);}
+  .play-2{bottom:6%; left:30%; width:170px; transform:rotate(3deg);}
+  .play-3{top:14%; right:26%; width:130px; transform:rotate(6deg);}
+  .play-4{bottom:22%; right:6%; width:110px; transform:rotate(-6deg); opacity:0.4;}
+
+  /* ---------- DISCLAIMER ---------- */
+  .disclaimer{
+    border-top:1px solid var(--gray-light);
+    border-bottom:1px solid var(--gray-light);
+    padding:18px 48px;
+    background:var(--paper-warm);
+  }
+  .disclaimer p{
+    max-width:var(--max-w);
+    margin:0 auto;
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:0.03em;
+    color:var(--gray);
+    text-align:center;
+  }
+
+  /* ---------- WORK SECTIONS ---------- */
+  .work-section{
+    padding:120px 48px;
+    background:var(--paper);
+  }
+  .work-section.inverse{
+    background:var(--paper);
+    padding:150px 48px;
+    overflow:visible;
+  }
+
+  .tilt-card{
+    position:relative;
+    max-width:1280px;
+    width:100%;
+    margin:0 auto;
+    background:var(--dark);
+    color:var(--paper);
+    border-radius:6px;
+    padding:100px 48px;
+    box-shadow:0 34px 60px -24px rgba(20,19,17,0.4), 0 2px 0 rgba(0,0,0,0.06);
+  }
+  #section-02 .tilt-card{transform:rotate(-1deg);}
+  #section-04 .tilt-card{transform:rotate(0.6deg); padding:90px 32px 100px;}
+
+  /* ripped/serrated tape pieces, anchored right over each section corner */
+  .tape{
+    position:absolute;
+    width:104px;
+    height:40px;
+    background:rgba(216,213,205,0.94);
+    box-shadow:0 3px 8px rgba(0,0,0,0.32);
+    z-index:2;
+    clip-path:polygon(
+      0% 0%, 100% 0%,
+      86% 12%, 100% 25%, 86% 37%, 100% 50%, 86% 62%, 100% 75%, 86% 87%, 100% 100%,
+      0% 100%,
+      14% 87%, 0% 75%, 14% 62%, 0% 50%, 14% 37%, 0% 25%, 14% 12%, 0% 0%
+    );
+  }
+  .tape-tl{top:-20px; left:-24px; transform:rotate(-45deg);}
+  .tape-tr{top:-20px; right:-24px; transform:rotate(45deg);}
+  .tape-bl{bottom:-20px; left:-24px; transform:scaleX(-1) rotate(-45deg);}
+  .tape-br{bottom:-20px; right:-24px; transform:scaleX(-1) rotate(45deg);}
+
+  .work-grid{
+    max-width:var(--max-w);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:72px;
+    align-items:center;
+  }
+
+  .work-grid.mirror{
+    direction:rtl;
+  }
+  .work-grid.mirror > *{
+    direction:ltr;
+  }
+
+  .section-head .section-num{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.18em;
+    color:var(--gold);
+    margin-bottom:20px;
+    display:block;
+  }
+  .work-section.inverse .section-head .section-num{
+    color:var(--blue);
+  }
+
+  .section-head h2{
+    font-family:var(--display-bold);
+    font-weight:700;
+    font-size:clamp(30px, 3.2vw, 42px);
+    line-height:1.1;
+    letter-spacing:-0.01em;
+    margin-bottom:22px;
+  }
+  .section-head h2::after{
+    content:"";
+    display:block;
+    width:44px;
+    height:3px;
+    background:var(--blue);
+    border-radius:2px;
+    margin-top:18px;
+  }
+  .partnerships .section-head h2::after{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .work-section:not(.inverse) .section-head h2{color:var(--ink);}
+  .work-section.inverse .section-head h2{color:var(--paper);}
+
+  .section-head p{
+    font-size:15.5px;
+    line-height:1.75;
+    max-width:480px;
+  }
+
+  .work-section:not(.inverse) .section-head p{color:#4a473f;}
+  .work-section.inverse .section-head p{color:#c9c6bd;}
+
+  .tools-row{
+    margin-top:26px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .tools-label{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  .tools-label--blue{color:var(--marker-blue);}
+  .tools-list{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--gray);
+  }
+  .work-section.inverse .tools-list{color:#9c988e;}
+
+  /* ---------- CAROUSEL ---------- */
+  .carousel{
+    position:relative;
+    width:100%;
+  }
+
+  .carousel-viewport{
+    overflow:hidden;
+    border-radius:2px;
+    aspect-ratio:4/3;
+    background:var(--paper-warm);
+    border:1px solid var(--gray-light);
+  }
+  .carousel--wide .carousel-viewport{
+    aspect-ratio:16/9;
+  }
+  .work-section.inverse .carousel-viewport{
+    background:var(--dark-2);
+    border-color:#33322d;
+  }
+
+  .carousel-track{
+    display:flex;
+    height:100%;
+    transition:transform 0.5s cubic-bezier(.65,0,.35,1);
+  }
+
+  .carousel-slide{
+    flex:0 0 100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+
+  .placeholder-img{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 11px, rgba(120,116,105,0.07) 11px, rgba(120,116,105,0.07) 12px);
+  }
+  .placeholder-img .ph-mark{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.1em;
+    color:var(--gray);
+    text-transform:uppercase;
+    text-align:center;
+    padding:0 20px;
+  }
+  .placeholder-img .ph-icon{
+    width:34px;height:34px;
+    border:1px solid var(--gray-light);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--gray-light);
+    font-family:var(--display);
+    font-style:italic;
+    font-size:15px;
+  }
+
+  .carousel-controls{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:18px;
+  }
+
+  .carousel-dots{
+    display:flex;
+    gap:7px;
+  }
+  .dot{
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--gray-light);
+    border:none;
+    padding:0;
+    cursor:pointer;
+    transition:background 0.2s ease, transform 0.2s ease;
+  }
+  .dot.active{
+    background:var(--gold);
+    transform:scale(1.3);
+  }
+  .work-section.inverse .dot{background:#3a3833;}
+  .work-section.inverse .dot.active{background:var(--blue);}
+
+  .carousel-arrows{
+    display:flex;
+    gap:8px;
+  }
+  .carousel-btn{
+    width:34px;height:34px;
+    border-radius:50%;
+    border:1px solid var(--gray-light);
+    background:transparent;
+    color:var(--ink);
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);
+    font-size:15px;
+    transition:background 0.2s ease, border-color 0.2s ease;
+  }
+  .carousel-btn:hover{
+    background:var(--gold);
+    border-color:var(--gold);
+    color:var(--white);
+  }
+  .work-section.inverse .carousel-btn{
+    color:var(--paper);
+    border-color:#3a3833;
+  }
+  .work-section.inverse .carousel-btn:hover{
+    background:var(--blue);
+    border-color:var(--blue);
+    color:var(--dark);
+  }
+
+  /* ---------- PARTNERSHIPS SECTION ---------- */
+  .partnerships{
+    text-align:center;
+  }
+  .partnerships .section-head{
+    max-width:640px;
+    margin:0 auto 70px;
+  }
+  .partnerships .section-head p{
+    max-width:640px;
+    margin:0 auto;
+  }
+  .partnerships .section-num{
+    display:block;
+    text-align:center;
+  }
+
+  .partner-grid{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:32px;
+  }
+
+  .partner-card{
+    width:100%;
+    min-width:0;
+  }
+
+  .partner-card .carousel{width:100%; min-width:0;}
+  .partner-card .carousel-viewport{
+    aspect-ratio:16/9;
+    width:100%;
+  }
+  .carousel-slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .partner-card .placeholder-img{gap:8px;}
+  .partner-card .placeholder-img .ph-mark{
+    font-size:9.5px;
+    padding:0 10px;
+  }
+  .partner-card .ph-icon{
+    width:20px;height:20px;
+    font-size:10px;
+  }
+  .partner-card .carousel-controls{margin-top:10px;}
+  .partner-card .carousel-btn{width:24px;height:24px;font-size:11px;}
+  .partner-card .dot{width:4px;height:4px;}
+  .partner-card .carousel-dots{gap:5px;}
+
+  .partner-meta{
+    margin-top:22px;
+  }
+  .partner-meta h3{
+    font-family:var(--display-bold);
+    font-weight:700;
+    font-size:16px;
+    color:var(--paper);
+    margin-bottom:6px;
+  }
+  .partner-meta p{
+    font-size:13px;
+    color:#9c988e;
+    font-style:italic;
+    font-family:var(--display);
+  }
+
+  /* ---------- AI NOTE ---------- */
+  .ai-note{
+    padding:90px 48px;
+    text-align:center;
+    background:var(--paper);
+    border-top:1px solid var(--gray-light);
+    border-bottom:1px solid var(--gray-light);
+  }
+  .ai-note .eyebrow{
+    justify-content:center;
+  }
+  .ai-note .eyebrow::before{
+    display:none;
+  }
+  .ai-note h2{
+    font-family:var(--display-bold);
+    font-weight:700;
+    font-size:clamp(26px, 2.8vw, 36px);
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    margin-bottom:20px;
+  }
+  .ai-note p{
+    max-width:720px;
+    margin:0 auto;
+    font-size:15.5px;
+    line-height:1.75;
+    color:#4a473f;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    padding:130px 48px 90px;
+    background:var(--paper);
+    text-align:center;
+  }
+  .contact .eyebrow{justify-content:center;}
+  .contact .eyebrow::before{display:none;}
+  .contact h2{
+    font-family:var(--display-bold);
+    font-weight:700;
+    font-size:clamp(30px, 3.6vw, 48px);
+    margin-bottom:56px;
+    letter-spacing:-0.01em;
+  }
+  .contact h2::after{
+    content:"";
+    display:block;
+    width:44px;
+    height:3px;
+    background:var(--blue);
+    border-radius:2px;
+    margin:18px auto 0;
+  }
+
+  .contact-links{
+    max-width:var(--max-w);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+
+  .contact-card{
+    border:1px solid var(--gray-light);
+    padding:32px 24px;
+    text-decoration:none;
+    color:var(--ink);
+    transition:border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+  }
+  .contact-card:hover{
+    border-color:var(--gold);
+    background:var(--paper-warm);
+    transform:translateY(-3px);
+  }
+  .contact-card .cc-label{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  .contact-card .cc-label--blue{color:var(--marker-blue);}
+  .contact-card:hover.cc-blue-hover{border-color:var(--marker-blue);}
+  .contact-card .cc-value{
+    font-family:var(--display);
+    font-size:16.5px;
+    font-style:italic;
+    word-break:break-word;
+  }
+
+  footer{
+    padding:36px 48px 48px;
+    text-align:center;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:var(--gray-light);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 880px){
+    .wrap, .disclaimer, .work-section, .contact, footer{padding-left:24px;padding-right:24px;}
+    .landing{padding:16px;}
+    .board-frame{padding:12px 12px 0;border-radius:10px;}
+    .board-surface{min-height:auto;padding-top:10px;}
+    .board-center{min-height:auto;padding:220px 20px 260px;}
+    .headshot-pin{top:24px;left:50%;transform:translateX(-50%) rotate(-4deg);width:130px;}
+    .postit{width:120px;height:92px;font-size:13px;padding:16px 10px 12px;}
+    .postit-1{top:auto; bottom:130px; right:6%;}
+    .postit-2{bottom:60px; left:6%;}
+    .postit-3{bottom:60px; right:6%;}
+    .play-2, .play-3{display:none;}
+    .play-1{top:190px; left:6%; width:110px; opacity:0.35;}
+    .play-4{bottom:200px; right:4%; width:90px; opacity:0.3;}
+    .work-grid{grid-template-columns:1fr;gap:44px;}
+    .work-grid.mirror{direction:ltr;}
+    .work-grid.mirror .section-head{order:1;}
+    .work-grid.mirror .carousel{order:2;}
+    .partner-grid{grid-template-columns:1fr;gap:32px; width:100%;}
+    .contact-links{grid-template-columns:1fr;}
+    .work-section{padding:80px 24px;}
+    .work-section.inverse{padding:90px 20px;}
+    .tilt-card, #section-04 .tilt-card{padding:60px 20px; transform:none !important;}
+    .tape{width:64px;height:26px;}
+    .tape-tl, .tape-tr{top:-14px;}
+    .tape-bl, .tape-br{bottom:-14px;}
+    .tape-tl, .tape-bl{left:-14px;}
+    .tape-tr, .tape-br{right:-14px;}
+    .contact{padding:90px 24px 70px;}
+    .ai-note{padding:60px 24px;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- LANDING: WHITEBOARD -->
+  <section class="landing">
+    <div class="board-frame">
+      <div class="board-surface">
+
+        <!-- play diagrams -->
+        <svg class="play-diagram play-1" viewBox="0 0 160 120" fill="none">
+          <circle cx="20" cy="60" r="9" stroke="var(--marker-black)" stroke-width="2.5"/>
+          <path d="M14 54 L26 66 M26 54 L14 66" stroke="var(--marker-black)" stroke-width="2.5" transform="translate(60,-38)"/>
+          <path d="M29 60 C 60 20, 90 20, 118 18" stroke="var(--marker-red)" stroke-width="2" stroke-dasharray="6 5" fill="none"/>
+          <path d="M112 12 L120 18 L110 24" stroke="var(--marker-red)" stroke-width="2" fill="none"/>
+          <circle cx="20" cy="95" r="9" stroke="var(--marker-black)" stroke-width="2.5"/>
+          <path d="M29 95 C 60 100, 90 95, 130 96" stroke="var(--marker-blue)" stroke-width="2" stroke-dasharray="6 5" fill="none"/>
+          <path d="M124 90 L132 96 L123 101" stroke="var(--marker-blue)" stroke-width="2" fill="none"/>
+        </svg>
+
+        <svg class="play-diagram play-2" viewBox="0 0 180 100" fill="none">
+          <path d="M8 14 L22 28 M22 14 L8 28" stroke="var(--marker-black)" stroke-width="2.5"/>
+          <path d="M8 60 L22 74 M22 60 L8 74" stroke="var(--marker-black)" stroke-width="2.5"/>
+          <circle cx="70" cy="20" r="8" stroke="var(--marker-black)" stroke-width="2.5"/>
+          <circle cx="70" cy="68" r="8" stroke="var(--marker-black)" stroke-width="2.5"/>
+          <path d="M15 28 C 20 50, 45 55, 62 62" stroke="var(--marker-red)" stroke-width="2" stroke-dasharray="1 6" stroke-linecap="round" fill="none"/>
+          <path d="M78 20 C 120 10, 150 30, 168 45" stroke="var(--marker-blue)" stroke-width="2" fill="none"/>
+          <path d="M160 39 L170 45 L162 52" stroke="var(--marker-blue)" stroke-width="2" fill="none"/>
+        </svg>
+
+        <svg class="play-diagram play-3" viewBox="0 0 130 130" fill="none">
+          <circle cx="65" cy="65" r="8" stroke="var(--marker-black)" stroke-width="2.5"/>
+          <path d="M65 57 L65 15" stroke="var(--marker-black)" stroke-width="2" stroke-dasharray="5 5"/>
+          <path d="M59 22 L65 13 L71 22" stroke="var(--marker-black)" stroke-width="2" fill="none"/>
+          <path d="M10 20 L24 34 M24 20 L10 34" stroke="var(--marker-red)" stroke-width="2.5"/>
+          <path d="M28 30 C 45 40, 55 50, 58 62" stroke="var(--marker-red)" stroke-width="1.8" stroke-dasharray="4 5" fill="none"/>
+        </svg>
+
+        <svg class="play-diagram play-4" viewBox="0 0 120 90" fill="none">
+          <circle cx="15" cy="45" r="7" stroke="var(--marker-black)" stroke-width="2.2"/>
+          <path d="M22 45 C 50 45, 70 20, 100 15" stroke="var(--marker-blue)" stroke-width="1.8" stroke-dasharray="5 5" fill="none"/>
+          <path d="M94 10 L102 15 L93 21" stroke="var(--marker-blue)" stroke-width="1.8" fill="none"/>
+          <path d="M60 60 L74 74 M74 60 L60 74" stroke="var(--marker-black)" stroke-width="2.2"/>
+        </svg>
+
+        <!-- headshot pinned with magnets -->
+        <div class="headshot-pin">
+          <span class="magnet magnet-left"></span>
+          <span class="magnet magnet-right"></span>
+          <img src="images/headshot_grayscale.jpg" alt="Macy Freeman, greyscale headshot pinned to whiteboard">
+        </div>
+
+        <!-- post-it notes -->
+        <div class="postit postit-1"><span class="tape"></span>Executive Storyteller</div>
+        <div class="postit postit-2"><span class="tape"></span>Critical<br>Thinker</div>
+        <div class="postit postit-3"><span class="tape"></span>Consumer-First Designs</div>
+
+        <!-- center content -->
+        <div class="board-center">
+          <span class="board-eyebrow">— Portfolio: Selected Work —</span>
+          <h1>Macy Freeman</h1>
+          <p class="objective">Business strategist supporting corporate strategy, executive decision-making, investor relations, &amp; business transformation — translating complex business challenges into clear narratives and actionable decisions.</p>
+          <a href="#section-01" class="scroll-cue">
+            <svg viewBox="0 0 30 34" fill="none"><path d="M15 2 C15 2 14 22 15 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M6 22 L15 31 L24 22" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            explore my work
+          </a>
+        </div>
+
+      </div>
+      <div class="board-tray">
+        <div class="marker-cap"></div>
+        <div class="eraser"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <p>All data, figures, and details shown have been altered or generalized to protect the confidentiality of the organizations represented.</p>
+  </div>
+
+  <!-- SECTION 01 — Executive Storytelling -->
+  <section class="work-section" id="section-01">
+    <div class="work-grid">
+      <div class="section-head">
+        <span class="section-num">Section 01</span>
+        <h2>Executive Storytelling</h2>
+        <p>Translating challenges, ideas, and analysis into clear, executive-ready narratives. Spans cross-functional stakeholder management, end-to-end initiative analysis, information synthesis, and material creation — including quarterly Board meeting materials, monthly Board updates, pre- &amp; post-event reports, and player pitches and proposals.</p>
+      </div>
+      <div class="carousel carousel--wide" data-carousel data-images="images/storytelling_01.jpg,images/storytelling_02.jpg,images/storytelling_03.jpg,images/storytelling_04.jpg,images/storytelling_05.jpg,images/storytelling_06.jpg,images/storytelling_07.jpg,images/storytelling_08.jpg">
+        <div class="carousel-viewport">
+          <div class="carousel-track"></div>
+        </div>
+        <div class="carousel-controls">
+          <div class="carousel-dots"></div>
+          <div class="carousel-arrows">
+            <button class="carousel-btn" data-prev aria-label="Previous slide">←</button>
+            <button class="carousel-btn" data-next aria-label="Next slide">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 02 — Consumer & Social Insights (inverse + mirrored) -->
+  <section class="work-section inverse" id="section-02">
+    <div class="tilt-card">
+      <span class="tape tape-tl"></span>
+      <span class="tape tape-tr"></span>
+      <span class="tape tape-bl"></span>
+      <span class="tape tape-br"></span>
+      <div class="work-grid mirror">
+        <div class="carousel" data-carousel data-images="images/insights_01.jpg,images/insights_02.jpg,images/insights_03.jpg,images/insights_04.jpg,images/insights_05.jpg,images/insights_06.jpg">
+          <div class="carousel-viewport">
+            <div class="carousel-track"></div>
+          </div>
+          <div class="carousel-controls">
+            <div class="carousel-dots"></div>
+            <div class="carousel-arrows">
+              <button class="carousel-btn" data-prev aria-label="Previous slide">←</button>
+              <button class="carousel-btn" data-next aria-label="Next slide">→</button>
+            </div>
+          </div>
+        </div>
+        <div class="section-head">
+          <span class="section-num">Section 02</span>
+          <h2>Consumer &amp; Social Insights</h2>
+          <p>Analyzing and synthesizing consumer and social insights for executive decision-makers. Spans tracking sentiment, identifying industry trends, and surfacing key insights that supported brand strategy, growth, and investment decisions — including social listening for measurement, trends, and risk, and brand sentiment analysis across CPG, retail, auto, and fast-food/quick-service industries.</p>
+          <div class="tools-row">
+            <span class="tools-label">Tools &amp; Partners</span>
+            <span class="tools-list">Meltwater · Sprinklr · Sprout Social · HundredX</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03 — Immersive Strategy Experiences -->
+  <section class="work-section" id="section-03">
+    <div class="work-grid">
+      <div class="section-head">
+        <span class="section-num">Section 03</span>
+        <h2>Immersive Strategy Experiences</h2>
+        <p>Led end-to-end development of executive strategy workshop experiences. Spans challenge identification, stakeholder interviews and synthesis, agenda design, immersive activation execution, and logistics — including full agenda activations across digital and physical mediums, small-group activities and worksheets, physical design, dining integration, and meaningful moments.</p>
+        <div class="tools-row">
+          <span class="tools-label tools-label--blue">Tools &amp; Partners</span>
+          <span class="tools-list">Mural · Alleo · Vendor partners</span>
+        </div>
+      </div>
+      <div class="carousel carousel--wide" data-carousel data-images="images/experiences_01.jpg,images/experiences_02.jpg,images/experiences_03.jpg,images/experiences_04.jpg,images/experiences_05.jpg,images/experiences_06.jpg">
+        <div class="carousel-viewport">
+          <div class="carousel-track"></div>
+        </div>
+        <div class="carousel-controls">
+          <div class="carousel-dots"></div>
+          <div class="carousel-arrows">
+            <button class="carousel-btn" data-prev aria-label="Previous slide">←</button>
+            <button class="carousel-btn" data-next aria-label="Next slide">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 04 — Partnership Opportunities (inverse) -->
+  <section class="work-section inverse partnerships" id="section-04">
+    <div class="tilt-card">
+      <span class="tape tape-tl"></span>
+      <span class="tape tape-tr"></span>
+      <span class="tape tape-bl"></span>
+      <span class="tape tape-br"></span>
+      <div class="section-head">
+        <span class="section-num">Section 04</span>
+        <h2>Partnership Concepts</h2>
+        <p>Partnership ideas across the LIV Golf ecosystem that deepen or grow fanbases, increase fan engagement, and display opportunity for profitable, mutual synergies.</p>
+      </div>
+      <div class="partner-grid">
+
+      <div class="partner-card">
+        <div class="carousel" data-carousel data-images="images/partner_jellycat_01.jpg,images/partner_jellycat_02.jpg,images/partner_jellycat_03.jpg,images/partner_jellycat_04.jpg,images/partner_jellycat_05.jpg">
+          <div class="carousel-viewport">
+            <div class="carousel-track"></div>
+          </div>
+          <div class="carousel-controls">
+            <div class="carousel-dots"></div>
+            <div class="carousel-arrows">
+              <button class="carousel-btn" data-prev aria-label="Previous slide">←</button>
+              <button class="carousel-btn" data-next aria-label="Next slide">→</button>
+            </div>
+          </div>
+        </div>
+        <div class="partner-meta">
+          <h3>Jellycat at LIV Golf UK</h3>
+          <p>Bringing playful collectibility to the fairway for a new generation of fans.</p>
+        </div>
+      </div>
+
+      <div class="partner-card">
+        <div class="carousel" data-carousel data-images="images/partner_rhode_01.jpg,images/partner_rhode_02.jpg,images/partner_rhode_03.jpg,images/partner_rhode_04.jpg,images/partner_rhode_05.jpg">
+          <div class="carousel-viewport">
+            <div class="carousel-track"></div>
+          </div>
+          <div class="carousel-controls">
+            <div class="carousel-dots"></div>
+            <div class="carousel-arrows">
+              <button class="carousel-btn" data-prev aria-label="Previous slide">←</button>
+              <button class="carousel-btn" data-next aria-label="Next slide">→</button>
+            </div>
+          </div>
+        </div>
+        <div class="partner-meta">
+          <h3>Rhode x LIV Golf</h3>
+          <p>Merging beauty culture with golf's global stage.</p>
+        </div>
+      </div>
+
+      <div class="partner-card">
+        <div class="carousel" data-carousel data-images="images/partner_ripper_01.jpg,images/partner_ripper_02.jpg,images/partner_ripper_03.jpg,images/partner_ripper_04.jpg,images/partner_ripper_05.jpg">
+          <div class="carousel-viewport">
+            <div class="carousel-track"></div>
+          </div>
+          <div class="carousel-controls">
+            <div class="carousel-dots"></div>
+            <div class="carousel-arrows">
+              <button class="carousel-btn" data-prev aria-label="Previous slide">←</button>
+              <button class="carousel-btn" data-next aria-label="Next slide">→</button>
+            </div>
+          </div>
+        </div>
+        <div class="partner-meta">
+          <h3>Ripper GC presented by Blue Lizard Sunscreen</h3>
+          <p>Sun protection meets team spirit under the open sky.</p>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </section>
+
+  <!-- AI NOTE -->
+  <section class="ai-note">
+    <span class="eyebrow">Built the Way I Work</span>
+    <h2>AI-First, By Design</h2>
+    <p>I don't wait until the end of a process to bring in AI — I start there. It's how I move faster, think sharper, and produce stronger outcomes for the teams I support. This site and the work products displayed here reflect that approach: human strategy, AI-accelerated execution.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <span class="eyebrow">Get in touch</span>
+    <h2>Let's talk strategy.</h2>
+    <div class="contact-links">
+      <a href="files/Macy_Freeman_Resume_2026.pdf" download="Macy_Freeman_Resume_2026.pdf" class="contact-card" data-resume-link>
+        <span class="cc-label">Resume</span>
+        <span class="cc-value">Download PDF</span>
+      </a>
+      <a href="mailto:macyfree17@gmail.com" class="contact-card">
+        <span class="cc-label">Email</span>
+        <span class="cc-value">macyfree17@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/macyfreeman/" target="_blank" rel="noopener" class="contact-card cc-blue-hover">
+        <span class="cc-label cc-label--blue">LinkedIn</span>
+        <span class="cc-value">/in/macyfreeman</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>Macy Freeman — Portfolio</footer>
+
+<script>
+  document.querySelectorAll('[data-carousel]').forEach((root, ci) => {
+    const imagesAttr = root.dataset.images;
+    const images = imagesAttr ? imagesAttr.split(',').map(s => s.trim()).filter(Boolean) : null;
+    const total = images ? images.length : (parseInt(root.dataset.slides, 10) || 5);
+    const track = root.querySelector('.carousel-track');
+    const dotsWrap = root.querySelector('.carousel-dots');
+    let index = 0;
+
+    for(let i=0;i<total;i++){
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      if(images){
+        slide.innerHTML = `<img src="${images[i]}" alt="Slide ${i+1} of ${total}" loading="lazy">`;
+      } else {
+        slide.innerHTML = `
+          <div class="placeholder-img">
+            <span class="ph-icon">${i+1}</span>
+            <span class="ph-mark">Image placeholder — slide ${i+1} of ${total}</span>
+          </div>`;
+      }
+      track.appendChild(slide);
+
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (i===0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to slide ' + (i+1));
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    }
+
+    function update(){
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dotsWrap.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+    function goTo(i){
+      index = (i + total) % total;
+      update();
+    }
+
+    root.querySelector('[data-prev]').addEventListener('click', () => goTo(index - 1));
+    root.querySelector('[data-next]').addEventListener('click', () => goTo(index + 1));
+
+    update();
+  });
+</script>
+
+</body>
+</html>
