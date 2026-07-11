@@ -209,12 +209,15 @@
     display:block;
     filter:contrast(1.04) brightness(1.02);
     border:3px solid #fff;
+    position:relative;
+    z-index:1;
   }
   .magnet{
     position:absolute;
     width:18px;height:18px;
     border-radius:50%;
     top:-9px;
+    z-index:2;
     box-shadow:0 2px 3px rgba(0,0,0,0.35), inset 0 -2px 3px rgba(0,0,0,0.25), inset 0 1px 2px rgba(255,255,255,0.5);
   }
   .magnet-left{left:14px; background:radial-gradient(circle at 35% 30%, #e57373, #b8453f);}
@@ -576,6 +579,53 @@
     object-fit:cover;
     display:block;
   }
+  .carousel-slide img.zoomable{
+    cursor:zoom-in;
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(12,11,9,0.94);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+    padding:56px;
+    cursor:zoom-out;
+  }
+  .lightbox.active{
+    display:flex;
+  }
+  .lightbox img{
+    max-width:92vw;
+    max-height:88vh;
+    border-radius:4px;
+    box-shadow:0 30px 70px rgba(0,0,0,0.5);
+    cursor:default;
+  }
+  .lightbox-close{
+    position:absolute;
+    top:22px;
+    right:28px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.3);
+    background:rgba(255,255,255,0.08);
+    color:var(--paper);
+    font-family:var(--display);
+    font-size:20px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background 0.2s ease;
+  }
+  .lightbox-close:hover{
+    background:rgba(255,255,255,0.18);
+  }
   .partner-card .placeholder-img{gap:8px;}
   .partner-card .placeholder-img .ph-mark{
     font-size:9.5px;
@@ -596,7 +646,7 @@
   .partner-meta h3{
     font-family:var(--display-bold);
     font-weight:700;
-    font-size:16px;
+    font-size:21px;
     color:var(--paper);
     margin-bottom:6px;
   }
@@ -941,25 +991,6 @@
       </div>
 
       <div class="partner-card">
-        <div class="carousel" data-carousel data-images="images/partner_rhode_01.jpg,images/partner_rhode_02.jpg,images/partner_rhode_03.jpg,images/partner_rhode_04.jpg,images/partner_rhode_05.jpg">
-          <div class="carousel-viewport">
-            <div class="carousel-track"></div>
-          </div>
-          <div class="carousel-controls">
-            <div class="carousel-dots"></div>
-            <div class="carousel-arrows">
-              <button class="carousel-btn" data-prev aria-label="Previous slide">←</button>
-              <button class="carousel-btn" data-next aria-label="Next slide">→</button>
-            </div>
-          </div>
-        </div>
-        <div class="partner-meta">
-          <h3>Rhode x LIV Golf</h3>
-          <p>Merging beauty culture with golf's global stage.</p>
-        </div>
-      </div>
-
-      <div class="partner-card">
         <div class="carousel" data-carousel data-images="images/partner_ripper_01.jpg,images/partner_ripper_02.jpg,images/partner_ripper_03.jpg,images/partner_ripper_04.jpg,images/partner_ripper_05.jpg">
           <div class="carousel-viewport">
             <div class="carousel-track"></div>
@@ -975,6 +1006,25 @@
         <div class="partner-meta">
           <h3>Ripper GC presented by Blue Lizard Sunscreen</h3>
           <p>Sun protection meets team spirit under the open sky.</p>
+        </div>
+      </div>
+
+      <div class="partner-card">
+        <div class="carousel" data-carousel data-images="images/partner_rhode_01.jpg,images/partner_rhode_02.jpg,images/partner_rhode_03.jpg,images/partner_rhode_04.jpg,images/partner_rhode_05.jpg">
+          <div class="carousel-viewport">
+            <div class="carousel-track"></div>
+          </div>
+          <div class="carousel-controls">
+            <div class="carousel-dots"></div>
+            <div class="carousel-arrows">
+              <button class="carousel-btn" data-prev aria-label="Previous slide">←</button>
+              <button class="carousel-btn" data-next aria-label="Next slide">→</button>
+            </div>
+          </div>
+        </div>
+        <div class="partner-meta">
+          <h3>Rhode x LIV Golf</h3>
+          <p>Merging beauty culture with golf's global stage.</p>
         </div>
       </div>
 
@@ -1011,6 +1061,11 @@
 
   <footer>Macy Freeman — Portfolio</footer>
 
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <img src="" alt="">
+</div>
+
 <script>
   document.querySelectorAll('[data-carousel]').forEach((root, ci) => {
     const imagesAttr = root.dataset.images;
@@ -1018,13 +1073,15 @@
     const total = images ? images.length : (parseInt(root.dataset.slides, 10) || 5);
     const track = root.querySelector('.carousel-track');
     const dotsWrap = root.querySelector('.carousel-dots');
+    const isZoomable = !!root.closest('.partnerships');
     let index = 0;
 
     for(let i=0;i<total;i++){
       const slide = document.createElement('div');
       slide.className = 'carousel-slide';
       if(images){
-        slide.innerHTML = `<img src="${images[i]}" alt="Slide ${i+1} of ${total}" loading="lazy">`;
+        const zoomClass = isZoomable ? ' zoomable' : '';
+        slide.innerHTML = `<img src="${images[i]}" alt="Slide ${i+1} of ${total}" loading="lazy" class="${zoomClass.trim()}">`;
       } else {
         slide.innerHTML = `
           <div class="placeholder-img">
@@ -1041,6 +1098,12 @@
       dotsWrap.appendChild(dot);
     }
 
+    if(isZoomable){
+      track.querySelectorAll('img.zoomable').forEach(img => {
+        img.addEventListener('click', () => openLightbox(img.src, img.alt));
+      });
+    }
+
     function update(){
       track.style.transform = `translateX(-${index * 100}%)`;
       dotsWrap.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
@@ -1054,6 +1117,29 @@
     root.querySelector('[data-next]').addEventListener('click', () => goTo(index + 1));
 
     update();
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const lightboxClose = lightbox.querySelector('.lightbox-close');
+
+  function openLightbox(src, alt){
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  lightbox.addEventListener('click', (e) => {
+    if(e.target === lightbox) closeLightbox();
+  });
+  lightboxClose.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeLightbox();
   });
 </script>
 
