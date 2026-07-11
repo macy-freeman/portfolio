@@ -137,7 +137,7 @@
     align-items:center;
     justify-content:center;
     text-align:center;
-    padding:40px 24px;
+    padding:60px 24px 110px;
   }
 
   .board-eyebrow{
@@ -161,17 +161,22 @@
 
   .landing .objective{
     margin-top:26px;
-    max-width:720px;
-    font-size:clamp(17px, 2vw, 21px);
+    max-width:min(94vw, 1120px);
+    font-size:clamp(16px, 1.8vw, 20px);
     font-weight:400;
     color:#33403e;
     font-family:var(--hand);
-    line-height:1.6;
+    line-height:1.55;
     transform:rotate(0.4deg);
   }
 
   .scroll-cue{
-    margin-top:56px;
+    position:absolute;
+    bottom:5%;
+    left:0;
+    right:0;
+    margin:0 auto;
+    width:fit-content;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -223,38 +228,65 @@
   .magnet-left{left:14px; background:radial-gradient(circle at 35% 30%, #e57373, #b8453f);}
   .magnet-right{right:14px; background:radial-gradient(circle at 35% 30%, #6a93d8, var(--marker-blue));}
 
-  /* --- post-it notes --- */
-  .postit{
-    position:absolute;
-    width:150px;
-    height:110px;
-    padding:20px 14px 16px;
-    font-family:var(--hand);
-    font-weight:700;
-    font-size:16px;
-    line-height:1.3;
-    color:#3a3630;
+  /* --- career timeline stickies --- */
+  .timeline-row{
+    position:relative;
+    z-index:3;
+    margin-top:46px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:flex-start;
+    gap:16px;
+    max-width:980px;
+  }
+  .timeline-card{
+    position:relative;
+    width:162px;
+    padding:18px 12px 14px;
     text-align:center;
     box-shadow:0 10px 16px -6px rgba(0,0,0,0.25);
-    z-index:3;
-    display:flex;
-    align-items:center;
-    justify-content:center;
     box-sizing:border-box;
   }
-  .postit .tape{
+  .timeline-card .tape{
     position:absolute;
     top:-10px;
     left:50%;
     transform:translateX(-50%) rotate(-3deg);
-    width:56px;
+    width:52px;
     height:20px;
     background:rgba(255,255,255,0.55);
     border:1px solid rgba(255,255,255,0.7);
   }
-  .postit-1{background:var(--postit-blue); top:10%; right:9%; transform:rotate(4deg); color:#1c3634;}
-  .postit-2{background:var(--postit-blue); bottom:14%; left:7%; transform:rotate(-3deg); color:#1c3634;}
-  .postit-3{background:var(--postit-yellow); bottom:9%; right:13%; transform:rotate(3deg); color:#3a2f14;}
+  .tc-company{
+    display:block;
+    font-family:var(--hand);
+    font-weight:700;
+    font-size:14.5px;
+    line-height:1.28;
+    margin-bottom:6px;
+  }
+  .tc-title{
+    display:block;
+    font-family:var(--hand);
+    font-weight:400;
+    font-size:11.5px;
+    line-height:1.3;
+    margin-bottom:9px;
+    opacity:0.9;
+  }
+  .tc-years{
+    display:block;
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:0.05em;
+    opacity:0.6;
+  }
+  .tc-1{background:var(--postit-yellow); color:#3a2f14; transform:rotate(-3deg);}
+  .tc-2{background:var(--postit-blue); color:#1c3634; transform:rotate(2deg);}
+  .tc-3{background:var(--postit-yellow); color:#3a2f14; transform:rotate(-1deg);}
+  .tc-4{background:var(--postit-blue); color:#1c3634; transform:rotate(3deg);}
+  .tc-5{background:var(--postit-yellow); color:#3a2f14; transform:rotate(-2deg);}
 
   /* --- play diagrams (X's and O's) --- */
   .play-diagram{
@@ -263,10 +295,10 @@
     z-index:1;
     pointer-events:none;
   }
-  .play-1{top:6%; left:32%; width:150px; transform:rotate(-4deg);}
-  .play-2{bottom:6%; left:30%; width:170px; transform:rotate(3deg);}
-  .play-3{top:14%; right:26%; width:130px; transform:rotate(6deg);}
-  .play-4{bottom:22%; right:6%; width:110px; transform:rotate(-6deg); opacity:0.4;}
+  .play-1{top:5%; right:5%; width:130px; transform:rotate(-4deg);}
+  .play-2{bottom:5%; left:5%; width:150px; transform:rotate(3deg);}
+  .play-3{bottom:6%; right:6%; width:120px; transform:rotate(6deg);}
+  .play-4{top:46%; right:1.5%; width:90px; transform:rotate(-6deg); opacity:0.3;}
 
   /* ---------- DISCLAIMER ---------- */
   .disclaimer{
@@ -679,9 +711,9 @@
     margin-bottom:6px;
   }
   .partner-meta p{
-    font-size:13px;
-    color:#9c988e;
-    font-style:italic;
+    font-size:13.5px;
+    line-height:1.55;
+    color:#b3afa4;
     font-family:var(--display);
   }
 
@@ -795,12 +827,13 @@
     .landing{padding:16px;}
     .board-frame{padding:12px 12px 0;border-radius:10px;}
     .board-surface{min-height:auto;padding-top:10px;}
-    .board-center{min-height:auto;padding:220px 20px 260px;}
+    .board-center{min-height:auto;padding:190px 20px 50px;}
     .headshot-pin{top:24px;left:50%;transform:translateX(-50%) rotate(-4deg);width:130px;}
-    .postit{width:120px;height:92px;font-size:13px;padding:16px 10px 12px;}
-    .postit-1{top:auto; bottom:130px; right:6%;}
-    .postit-2{bottom:60px; left:6%;}
-    .postit-3{bottom:60px; right:6%;}
+    .timeline-row{margin-top:34px;gap:12px;}
+    .timeline-card{width:120px;padding:14px 9px 11px;}
+    .tc-company{font-size:12.5px;}
+    .tc-title{font-size:10.5px;}
+    .tc-years{font-size:9px;}
     .play-2, .play-3{display:none;}
     .play-1{top:190px; left:6%; width:110px; opacity:0.35;}
     .play-4{bottom:200px; right:4%; width:90px; opacity:0.3;}
@@ -873,16 +906,45 @@
           <img src="images/headshot_grayscale.jpg" alt="Macy Freeman, greyscale headshot pinned to whiteboard">
         </div>
 
-        <!-- post-it notes -->
-        <div class="postit postit-1"><span class="tape"></span>Executive Storyteller</div>
-        <div class="postit postit-2"><span class="tape"></span>Critical<br>Thinker</div>
-        <div class="postit postit-3"><span class="tape"></span>Consumer-First Designs</div>
-
         <!-- center content -->
         <div class="board-center">
           <span class="board-eyebrow">— Portfolio: Selected Work —</span>
           <h1>Macy Freeman</h1>
           <p class="objective">Business strategist supporting corporate strategy, executive decision-making, investor relations, &amp; business transformation — translating complex business challenges into clear narratives and actionable decisions.</p>
+
+          <div class="timeline-row">
+            <div class="timeline-card tc-1">
+              <span class="tape"></span>
+              <span class="tc-company">Virginia Tech Athletics</span>
+              <span class="tc-title">Marketing; Strategic Communications Intern</span>
+              <span class="tc-years">2019 – 2022</span>
+            </div>
+            <div class="timeline-card tc-2">
+              <span class="tape"></span>
+              <span class="tc-company">Margaritaville University</span>
+              <span class="tc-title">Campus Ambassador</span>
+              <span class="tc-years">2020 – 2022</span>
+            </div>
+            <div class="timeline-card tc-3">
+              <span class="tape"></span>
+              <span class="tc-company">Deloitte Consulting</span>
+              <span class="tc-title">Strategy Consultant</span>
+              <span class="tc-years">2022 – 2025</span>
+            </div>
+            <div class="timeline-card tc-4">
+              <span class="tape"></span>
+              <span class="tc-company">Deloitte Greenhouse</span>
+              <span class="tc-title">Executive Strategy Workshop Fellow</span>
+              <span class="tc-years">2023 – 2024</span>
+            </div>
+            <div class="timeline-card tc-5">
+              <span class="tape"></span>
+              <span class="tc-company">LIV Golf</span>
+              <span class="tc-title">Corporate Strategy Design Manager</span>
+              <span class="tc-years">2025 – Current</span>
+            </div>
+          </div>
+
           <a href="#section-01" class="scroll-cue">
             <svg viewBox="0 0 30 34" fill="none"><path d="M15 2 C15 2 14 22 15 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M6 22 L15 31 L24 22" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             explore my work
@@ -1014,7 +1076,7 @@
         </div>
         <div class="partner-meta">
           <h3>Jellycat at LIV Golf UK</h3>
-          <p>Bringing playful collectibility to the fairway for a new generation of fans.</p>
+          <p>A culture-first partnership bringing Jellycat's viral, collectible experiences to LIV Golf - boosting engagement, reaching younger audiences, and unlocking new merch opportunities. Designed to boost attendance and social amplification by tapping into a high-growth fandom with millions engaged worldwide.</p>
         </div>
       </div>
 
@@ -1032,8 +1094,8 @@
           </div>
         </div>
         <div class="partner-meta">
-          <h3>Ripper GC presented by Blue Lizard Sunscreen</h3>
-          <p>Sun protection meets team spirit under the open sky.</p>
+          <h3>Ripper GC presented by<br>Blue Lizard Sunscreen</h3>
+          <p>One partnership, two audiences: Blue Lizard protects Ripper GC's players on camera and its fans on the course — an estimated $14.2M commercial opportunity built on a need everyone in the ecosystem has.</p>
         </div>
       </div>
 
@@ -1052,7 +1114,7 @@
         </div>
         <div class="partner-meta">
           <h3>Rhode x LIV Golf</h3>
-          <p>Merging beauty culture with golf's global stage.</p>
+          <p>LIV Golf x Rhode: two disruptors, one fairway. A single co-branded accessory — carried by every player, at every event — turns golf's fastest-growing audience (women, families, first-timers) into a beauty audience, and beauty's most engaged shoppers into golf fans.</p>
         </div>
       </div>
 
